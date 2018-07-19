@@ -42,15 +42,20 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.folderBrowserDialogSteam = new System.Windows.Forms.FolderBrowserDialog();
+            this.tabPageDebug = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.richTextBoxSourceGameDebug = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.toolsPage.SuspendLayout();
             this.settingsPage.SuspendLayout();
+            this.tabPageDebug.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.toolsPage);
             this.tabControl1.Controls.Add(this.settingsPage);
+            this.tabControl1.Controls.Add(this.tabPageDebug);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -118,7 +123,7 @@
             this.richTextBoxAdditionalSteamDirectory.Location = new System.Drawing.Point(11, 59);
             this.richTextBoxAdditionalSteamDirectory.Name = "richTextBoxAdditionalSteamDirectory";
             this.richTextBoxAdditionalSteamDirectory.ReadOnly = true;
-            this.richTextBoxAdditionalSteamDirectory.Size = new System.Drawing.Size(482, 96);
+            this.richTextBoxAdditionalSteamDirectory.Size = new System.Drawing.Size(482, 51);
             this.richTextBoxAdditionalSteamDirectory.TabIndex = 4;
             this.richTextBoxAdditionalSteamDirectory.Text = "";
             // 
@@ -180,6 +185,35 @@
             // 
             this.folderBrowserDialogSteam.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
+            // tabPageDebug
+            // 
+            this.tabPageDebug.Controls.Add(this.richTextBoxSourceGameDebug);
+            this.tabPageDebug.Controls.Add(this.label4);
+            this.tabPageDebug.Location = new System.Drawing.Point(4, 22);
+            this.tabPageDebug.Name = "tabPageDebug";
+            this.tabPageDebug.Size = new System.Drawing.Size(499, 410);
+            this.tabPageDebug.TabIndex = 2;
+            this.tabPageDebug.Text = "Debug";
+            this.tabPageDebug.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(111, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Source Game Objects";
+            // 
+            // richTextBoxSourceGameDebug
+            // 
+            this.richTextBoxSourceGameDebug.Location = new System.Drawing.Point(6, 26);
+            this.richTextBoxSourceGameDebug.Name = "richTextBoxSourceGameDebug";
+            this.richTextBoxSourceGameDebug.ReadOnly = true;
+            this.richTextBoxSourceGameDebug.Size = new System.Drawing.Size(490, 96);
+            this.richTextBoxSourceGameDebug.TabIndex = 1;
+            this.richTextBoxSourceGameDebug.Text = "";
+            // 
             // mainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -195,6 +229,8 @@
             this.toolsPage.ResumeLayout(false);
             this.settingsPage.ResumeLayout(false);
             this.settingsPage.PerformLayout();
+            this.tabPageDebug.ResumeLayout(false);
+            this.tabPageDebug.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,5 +252,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialogSteam;
+        private System.Windows.Forms.TabPage tabPageDebug;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.RichTextBox richTextBoxSourceGameDebug;
     }
 }
