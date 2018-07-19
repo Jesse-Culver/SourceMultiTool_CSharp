@@ -203,15 +203,15 @@ namespace SourceMultiToolCSharp
             StringBuilder sb = new StringBuilder();
             foreach (SourceGame game in listOfSourceGames)
             {
-                sb.AppendLine("steamName: ");
+                sb.Append("SteamName: ");
                 sb.AppendLine(game.SteamName);
-                sb.AppendLine("properName: ");
+                sb.Append("ProperName: ");
                 sb.AppendLine(game.ProperName);
-                sb.AppendLine("installed: ");
+                sb.Append("Installed: ");
                 sb.AppendLine(game.Installed.ToString());
                 if (game.Installed)
                 {
-                    sb.AppendLine("Directory: ");
+                    sb.Append("Directory: ");
                     sb.AppendLine(game.Directory);
                 }
                 sb.AppendLine("\n");
