@@ -255,7 +255,18 @@ namespace SourceMultiToolCSharp
             string directory = listOfSourceGames.First(item => item.ProperName == gameName).Directory;
             if (!File.Exists(directory+"\\bin\\hammer.exe"))
             {
-                MessageBox.Show(String.Format("No Hammer install could be found at {0}\\bin\\hammer.exe",directory), "ERROR 002", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                switch (gameName)
+                {
+                    case "Alien Swarm":
+                    case "Counter-Strike Global Offensive":
+                    case "Left 4 Dead 2":
+                    case "Portal 2":
+                        MessageBox.Show(String.Format("No Hammer install could be found at {0}\\bin\\hammer.exe \n\n Make sure you have installed it's authoring tools in Steam!", directory), "ERROR 002", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        break;
+                    default:
+                        MessageBox.Show(String.Format("No Hammer install could be found at {0}\\bin\\hammer.exe", directory), "ERROR 002", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        break;
+                }
                 return;
             }
             Process hammer = new Process();
