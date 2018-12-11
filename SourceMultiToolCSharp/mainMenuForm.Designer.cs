@@ -40,7 +40,7 @@
             this.textSteamDirectory = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxGames = new System.Windows.Forms.ComboBox();
             this.folderBrowserDialogSteam = new System.Windows.Forms.FolderBrowserDialog();
             this.tabPageDebug = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
@@ -91,6 +91,7 @@
             this.buttonHammer.TabIndex = 0;
             this.buttonHammer.Text = "Hammer Editor";
             this.buttonHammer.UseVisualStyleBackColor = true;
+            this.buttonHammer.Click += new System.EventHandler(this.buttonHammer_Click);
             // 
             // settingsPage
             // 
@@ -172,14 +173,14 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Game/Mod";
             // 
-            // comboBox1
+            // comboBoxGames
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(133, 454);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(382, 21);
-            this.comboBox1.TabIndex = 2;
+            this.comboBoxGames.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxGames.FormattingEnabled = true;
+            this.comboBoxGames.Location = new System.Drawing.Point(133, 454);
+            this.comboBoxGames.Name = "comboBoxGames";
+            this.comboBoxGames.Size = new System.Drawing.Size(382, 21);
+            this.comboBoxGames.TabIndex = 2;
             // 
             // folderBrowserDialogSteam
             // 
@@ -219,7 +220,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(531, 486);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxGames);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tabControl1);
             this.Name = "mainMenuForm";
@@ -244,7 +245,7 @@
         private System.Windows.Forms.Button buttonModelViewer;
         private System.Windows.Forms.Button buttonHammer;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxGames;
         private System.Windows.Forms.RichTextBox richTextBoxAdditionalSteamDirectory;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonBrowseSteamDir;

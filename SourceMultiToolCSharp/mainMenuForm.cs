@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -60,15 +62,27 @@ namespace SourceMultiToolCSharp
                 textSteamDirectory.Text = Properties.Settings.Default.mainSteamDir;
             }
             // Add Source Games
-            listOfSourceGames.Add(new SourceGame {
+            listOfSourceGames.Add(new SourceGame
+            {
+                SteamName = "Alien Swarm",
+                ProperName = "Alien Swarm",
+                Installed = false,
+                Directory = ""
+            });
+            listOfSourceGames.Add(new SourceGame
+            {
                 SteamName = "Contagion",
                 ProperName = "Contagion",
                 Installed = false,
-                Directory = ""});
-            listOfSourceGames.Add(new SourceGame { SteamName = "Counter-Strike Global Offensive",
+                Directory = ""
+            });
+            listOfSourceGames.Add(new SourceGame
+            {
+                SteamName = "Counter-Strike Global Offensive",
                 ProperName = "Counter-Strike Global Offensive",
                 Installed = false,
-                Directory = "" });
+                Directory = ""
+            });
             listOfSourceGames.Add(new SourceGame
             {
                 SteamName = "Counter-Strike Source",
@@ -113,25 +127,19 @@ namespace SourceMultiToolCSharp
             });
             listOfSourceGames.Add(new SourceGame
             {
-                SteamName = "insurgency2",
-                ProperName = "Insurgency",
-                Installed = false,
-                Directory = ""
-            });
-            listOfSourceGames.Add(new SourceGame
-            {
                 SteamName = "Left 4 Dead 2",
                 ProperName = "Left 4 Dead 2",
                 Installed = false,
                 Directory = ""
             });
-            listOfSourceGames.Add(new SourceGame
+            /*listOfSourceGames.Add(new SourceGame
             {
                 SteamName = "nmrih",
                 ProperName = "No More Room In Hell",
                 Installed = false,
                 Directory = ""
             });
+            */
             listOfSourceGames.Add(new SourceGame
             {
                 SteamName = "Portal",
@@ -195,6 +203,7 @@ namespace SourceMultiToolCSharp
                     }
                 }
             }
+            updateGameDropDown();
             updateDebugInfo();
         }
 
@@ -217,6 +226,42 @@ namespace SourceMultiToolCSharp
                 sb.AppendLine("\n");
             }
             richTextBoxSourceGameDebug.Text = sb.ToString();
+        }
+
+        private void updateGameDropDown()
+        {
+            // Clear the combobox and disable buttons
+            comboBoxGames.Items.Clear();
+            buttonHammer.Enabled = false;
+            foreach( SourceGame game in listOfSourceGames)
+            {
+                if (game.Installed)
+                {
+                    comboBoxGames.Items.Add(game.ProperName);
+                }
+            }
+            if (comboBoxGames.Items.Count > 0)
+            {
+                comboBoxGames.SelectedIndex = 0;
+                // Reenable
+                buttonHammer.Enabled = true;
+                buttonModelViewer.Enabled = true;
+            }
+        }
+
+        private void buttonHammer_Click(object sender, EventArgs e)
+        {
+            string gameName = comboBoxGames.GetItemText(comboBoxGames.SelectedItem);
+            string directory = listOfSourceGames.First(item => item.ProperName == gameName).Directory;
+            if (!File.Exists(directory+"\\bin\\hammer.exe"))
+            {
+                MessageBox.Show(String.Format("No Hammer install could be found at {0}\\bin\\hammer.exe",directory), "ERROR 002", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            Process hammer = new Process();
+            hammer.StartInfo.FileName = "CMD.exe";
+            hammer.StartInfo.Arguments = "/c cd /d " + directory + "\\bin && start \"\" hammer.exe -nop4";
+            hammer.Start();
         }
     }
 }
