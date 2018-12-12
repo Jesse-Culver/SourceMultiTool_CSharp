@@ -106,6 +106,20 @@ namespace SourceMultiToolCSharp
             });
             listOfSourceGames.Add(new SourceGame
             {
+                SteamName = "Dino D-Day",
+                ProperName = "Dino D-Day",
+                Installed = false,
+                Directory = ""
+            });
+            listOfSourceGames.Add(new SourceGame
+            {
+                SteamName = "Empires",
+                ProperName = "Empires",
+                Installed = false,
+                Directory = ""
+            });
+            listOfSourceGames.Add(new SourceGame
+            {
                 SteamName = "GarrysMod",
                 ProperName = "Garrys Mod",
                 Installed = false,
@@ -113,8 +127,22 @@ namespace SourceMultiToolCSharp
             });
             listOfSourceGames.Add(new SourceGame
             {
+                SteamName = "Half-Life 1 Source Deathmatch",
+                ProperName = "Half-Life Source",
+                Installed = false,
+                Directory = ""
+            });
+            listOfSourceGames.Add(new SourceGame
+            {
                 SteamName = "Half-Life 2",
                 ProperName = "Half-Life 2",
+                Installed = false,
+                Directory = ""
+            });
+            listOfSourceGames.Add(new SourceGame
+            {
+                SteamName = "Half-Life 2 Deathmatch",
+                ProperName = "Half-Life 2 Deathmatch",
                 Installed = false,
                 Directory = ""
             });
@@ -132,14 +160,20 @@ namespace SourceMultiToolCSharp
                 Installed = false,
                 Directory = ""
             });
-            /*listOfSourceGames.Add(new SourceGame
+            listOfSourceGames.Add(new SourceGame
             {
                 SteamName = "nmrih",
                 ProperName = "No More Room In Hell",
                 Installed = false,
                 Directory = ""
             });
-            */
+            listOfSourceGames.Add(new SourceGame
+            {
+                SteamName = "Nuclear Dawn",
+                ProperName = "Nuclear Dawn",
+                Installed = false,
+                Directory = ""
+            });
             listOfSourceGames.Add(new SourceGame
             {
                 SteamName = "Portal",
@@ -259,19 +293,31 @@ namespace SourceMultiToolCSharp
                 {
                     case "Alien Swarm":
                     case "Counter-Strike Global Offensive":
+                    case "Dino D-Day":
                     case "Left 4 Dead 2":
+                    case "Nuclear Dawn":
                     case "Portal 2":
                         MessageBox.Show(String.Format("No Hammer install could be found at {0}\\bin\\hammer.exe \n\n Make sure you have installed it's authoring tools in Steam!", directory), "ERROR 002", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    case "No More Room In Hell":
+                        if(!File.Exists(directory + "\\sdk\\bin\\hammer.exe"))
+                        {
+                            MessageBox.Show(String.Format("No Hammer install could be found at {0}\\sdk\\bin\\hammer.exe", directory), "ERROR 002", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                         break;
                     default:
                         MessageBox.Show(String.Format("No Hammer install could be found at {0}\\bin\\hammer.exe", directory), "ERROR 002", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        break;
+                        return;
                 }
-                return;
+                
             }
             Process hammer = new Process();
             hammer.StartInfo.FileName = "CMD.exe";
-            hammer.StartInfo.Arguments = "/c cd /d " + directory + "\\bin && start \"\" hammer.exe -nop4";
+            if (gameName == "No More Room In Hell")
+                hammer.StartInfo.Arguments = "/c cd /d " + directory + "\\sdk\\bin && start \"\" hammer.exe -nop4";
+            else
+                hammer.StartInfo.Arguments = "/c cd /d " + directory + "\\bin && start \"\" hammer.exe -nop4";
             hammer.Start();
         }
     }
