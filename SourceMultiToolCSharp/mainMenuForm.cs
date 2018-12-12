@@ -24,6 +24,7 @@ namespace SourceMultiToolCSharp
         {
             public string SteamName { get; set; }
             public string ProperName { get; set; }
+            public string SourceName { get; set; }
             public bool Installed { get; set; }
             public string Directory { get; set; }
         }
@@ -34,7 +35,7 @@ namespace SourceMultiToolCSharp
         private void buttonBrowseSteamDir_Click(object sender, EventArgs e)
         {
             DialogResult result = folderBrowserDialogSteam.ShowDialog();
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 textSteamDirectory.Text = folderBrowserDialogSteam.SelectedPath;
             }
@@ -42,7 +43,7 @@ namespace SourceMultiToolCSharp
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            if (File.Exists(textSteamDirectory.Text+"/Steam.exe"))
+            if (File.Exists(textSteamDirectory.Text + "/Steam.exe"))
             {
                 Properties.Settings.Default.mainSteamDir = textSteamDirectory.Text;
                 findSteamDirectories();
@@ -50,7 +51,7 @@ namespace SourceMultiToolCSharp
             }
             else
             {
-                MessageBox.Show("The Main Steam Directory you have chosen does not contain Steam.exe meaning it is not your main directory","ERROR 001",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("The Main Steam Directory you have chosen does not contain Steam.exe meaning it is not your main directory", "ERROR 001", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -66,6 +67,7 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "Alien Swarm",
                 ProperName = "Alien Swarm",
+                SourceName = "swarm",
                 Installed = false,
                 Directory = ""
             });
@@ -73,6 +75,7 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "Contagion",
                 ProperName = "Contagion",
+                SourceName = "contagion",
                 Installed = false,
                 Directory = ""
             });
@@ -80,6 +83,7 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "Counter-Strike Global Offensive",
                 ProperName = "Counter-Strike Global Offensive",
+                SourceName = "csgo",
                 Installed = false,
                 Directory = ""
             });
@@ -87,6 +91,7 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "Counter-Strike Source",
                 ProperName = "Counter-Strike Source",
+                SourceName = "cstrike",
                 Installed = false,
                 Directory = ""
             });
@@ -94,6 +99,7 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "Day of Defeat Source",
                 ProperName = "Day of Defeat Source",
+                SourceName = "dod",
                 Installed = false,
                 Directory = ""
             });
@@ -101,6 +107,7 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "dayofinfamy",
                 ProperName = "Day of Infamy",
+                SourceName = "doi",
                 Installed = false,
                 Directory = ""
             });
@@ -108,6 +115,7 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "Dino D-Day",
                 ProperName = "Dino D-Day",
+                SourceName = "dinodday",
                 Installed = false,
                 Directory = ""
             });
@@ -115,6 +123,7 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "Double Action",
                 ProperName = "Double Action",
+                SourceName = "dab",
                 Installed = false,
                 Directory = ""
             });
@@ -122,6 +131,7 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "Empires",
                 ProperName = "Empires",
+                SourceName = "empires",
                 Installed = false,
                 Directory = ""
             });
@@ -129,13 +139,15 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "GarrysMod",
                 ProperName = "Garrys Mod",
+                SourceName = "garrysmod",
                 Installed = false,
                 Directory = ""
             });
             listOfSourceGames.Add(new SourceGame
             {
                 SteamName = "Half-Life 1 Source Deathmatch",
-                ProperName = "Half-Life Source",
+                ProperName = "Half-Life Source Deathmatch",
+                SourceName = "hl1mp",
                 Installed = false,
                 Directory = ""
             });
@@ -143,6 +155,7 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "Half-Life 2",
                 ProperName = "Half-Life 2",
+                SourceName = "hl2",
                 Installed = false,
                 Directory = ""
             });
@@ -150,6 +163,7 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "Half-Life 2 Deathmatch",
                 ProperName = "Half-Life 2 Deathmatch",
+                SourceName = "hl2mp",
                 Installed = false,
                 Directory = ""
             });
@@ -157,6 +171,7 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "insurgency2",
                 ProperName = "Insurgency",
+                SourceName = "insurgency",
                 Installed = false,
                 Directory = ""
             });
@@ -164,6 +179,7 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "Left 4 Dead 2",
                 ProperName = "Left 4 Dead 2",
+                SourceName = "left4dead2",
                 Installed = false,
                 Directory = ""
             });
@@ -171,6 +187,7 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "nmrih",
                 ProperName = "No More Room In Hell",
+                SourceName = "nmrih",
                 Installed = false,
                 Directory = ""
             });
@@ -178,6 +195,7 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "Nuclear Dawn",
                 ProperName = "Nuclear Dawn",
+                SourceName = "nucleardawn",
                 Installed = false,
                 Directory = ""
             });
@@ -185,6 +203,7 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "pirates, vikings and knights ii",
                 ProperName = "Pirates, Vikings, and Knights II",
+                SourceName = "pvkii",
                 Installed = false,
                 Directory = ""
             });
@@ -192,6 +211,7 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "Portal",
                 ProperName = "Portal",
+                SourceName = "portal",
                 Installed = false,
                 Directory = ""
             });
@@ -199,6 +219,7 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "Portal 2",
                 ProperName = "Portal 2",
+                SourceName = "portal2",
                 Installed = false,
                 Directory = ""
             });
@@ -206,6 +227,7 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "Team Fortress 2",
                 ProperName = "Team Fortress 2",
+                SourceName = "tf",
                 Installed = false,
                 Directory = ""
             });
@@ -217,18 +239,18 @@ namespace SourceMultiToolCSharp
             if (File.Exists(textSteamDirectory.Text + "/steamapps/libraryfolders.vdf"))
             {
                 string[] lines = File.ReadAllLines(textSteamDirectory.Text + "/steamapps/libraryfolders.vdf");
-                if(lines.Count() != 5)
+                if (lines.Count() != 5)
                 {
                     //This means we have multiple directories
                     steamDirectories.Clear();
                     steamDirectories.Add(textSteamDirectory.Text);
                     int numberOfDirectories = lines.Count() - 5;
-                    for(int i = 4; i < lines.Count()-1; i++)    //start at line 5 and go to closing bracket
+                    for (int i = 4; i < lines.Count() - 1; i++)    //start at line 5 and go to closing bracket
                     {
                         string temp = lines[i];
                         int finalPosition = temp.LastIndexOf("\"");
-                        int startPosition = temp.LastIndexOf("\"", finalPosition - 1)+1;    //Dont grab the same position or starting quote
-                        temp = temp.Substring(startPosition, (finalPosition - startPosition)).Replace("\\\\","\\");
+                        int startPosition = temp.LastIndexOf("\"", finalPosition - 1) + 1;    //Dont grab the same position or starting quote
+                        temp = temp.Substring(startPosition, (finalPosition - startPosition)).Replace("\\\\", "\\");
                         steamDirectories.Add(temp);
                     }
                     richTextBoxAdditionalSteamDirectory.Lines = steamDirectories.ToArray();
@@ -246,7 +268,7 @@ namespace SourceMultiToolCSharp
                 {
                     if (Directory.Exists(dir + "\\steamapps\\common\\" + game.SteamName))
                     {
-                        game.Directory = dir + "\\steamapps\\common\\"+game.SteamName;
+                        game.Directory = dir + "\\steamapps\\common\\" + game.SteamName;
                         game.Installed = true;
                     }
                 }
@@ -264,6 +286,8 @@ namespace SourceMultiToolCSharp
                 sb.AppendLine(game.SteamName);
                 sb.Append("ProperName: ");
                 sb.AppendLine(game.ProperName);
+                sb.Append("SourceName: ");
+                sb.AppendLine(game.SourceName);
                 sb.Append("Installed: ");
                 sb.AppendLine(game.Installed.ToString());
                 if (game.Installed)
@@ -281,7 +305,7 @@ namespace SourceMultiToolCSharp
             // Clear the combobox and disable buttons
             comboBoxGames.Items.Clear();
             buttonHammer.Enabled = false;
-            foreach( SourceGame game in listOfSourceGames)
+            foreach (SourceGame game in listOfSourceGames)
             {
                 if (game.Installed)
                 {
@@ -301,7 +325,7 @@ namespace SourceMultiToolCSharp
         {
             string gameName = comboBoxGames.GetItemText(comboBoxGames.SelectedItem);
             string directory = listOfSourceGames.First(item => item.ProperName == gameName).Directory;
-            if (!File.Exists(directory+"\\bin\\hammer.exe"))
+            if (!File.Exists(directory + "\\bin\\hammer.exe"))
             {
                 switch (gameName)
                 {
@@ -314,7 +338,7 @@ namespace SourceMultiToolCSharp
                         MessageBox.Show(String.Format("No Hammer install could be found at {0}\\bin\\hammer.exe \n\n Make sure you have installed it's authoring tools in Steam!", directory), "ERROR 002", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     case "No More Room In Hell":
-                        if(!File.Exists(directory + "\\sdk\\bin\\hammer.exe"))
+                        if (!File.Exists(directory + "\\sdk\\bin\\hammer.exe"))
                         {
                             MessageBox.Show(String.Format("No Hammer install could be found at {0}\\sdk\\bin\\hammer.exe", directory), "ERROR 002", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
@@ -331,17 +355,65 @@ namespace SourceMultiToolCSharp
                         MessageBox.Show(String.Format("No Hammer install could be found at {0}\\bin\\hammer.exe", directory), "ERROR 002", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                 }
-                
+
             }
             Process hammer = new Process();
             hammer.StartInfo.FileName = "CMD.exe";
             if (gameName == "No More Room In Hell")
                 hammer.StartInfo.Arguments = "/c cd /d " + directory + "\\sdk\\bin && start \"\" hammer.exe -nop4";
-            else if(gameName == "Pirates, Vikings, and Knights II")
+            else if (gameName == "Pirates, Vikings, and Knights II")
                 hammer.StartInfo.Arguments = "/c cd /d " + directory + "\\sdkbase_pvkii\\bin && start \"\" hammer.exe -nop4";
             else
                 hammer.StartInfo.Arguments = "/c cd /d " + directory + "\\bin && start \"\" hammer.exe -nop4";
             hammer.Start();
+        }
+
+        private void buttonModelViewer_Click(object sender, EventArgs e)
+        {
+            string gameName = comboBoxGames.GetItemText(comboBoxGames.SelectedItem);
+            string directory = listOfSourceGames.First(item => item.ProperName == gameName).Directory;
+            string sourcename = listOfSourceGames.First(item => item.ProperName == gameName).SourceName;
+            if (!File.Exists(directory + "\\bin\\hlmv.exe"))
+            {
+                switch (gameName)
+                {
+                    case "Alien Swarm":
+                    case "Counter-Strike Global Offensive":
+                    case "Dino D-Day":
+                    case "Left 4 Dead 2":
+                    case "Nuclear Dawn":
+                    case "Portal 2":
+                        MessageBox.Show(String.Format("No Hammer install could be found at {0}\\bin\\hlmv.exe \n\n Make sure you have installed it's authoring tools in Steam!", directory), "ERROR 003", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    case "No More Room In Hell":
+                        if (!File.Exists(directory + "\\sdk\\bin\\hlmv.exe"))
+                        {
+                            MessageBox.Show(String.Format("No Hammer install could be found at {0}\\sdk\\bin\\hlmv.exe", directory), "ERROR 003", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                        break;
+                    case "Pirates, Vikings, and Knights II":
+                        if (!File.Exists(directory + "\\sdkbase_pvkii\\bin\\hlmv.exe"))
+                        {
+                            MessageBox.Show(String.Format("No Hammer install could be found at {0}\\sdkbase_pvkii\\bin\\hlmv.exe", directory), "ERROR 003", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                        break;
+                    default:
+                        MessageBox.Show(String.Format("No Hammer install could be found at {0}\\bin\\hlmv.exe", directory), "ERROR 003", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                }
+            }
+
+            Process modelviewer = new Process();
+            modelviewer.StartInfo.FileName = "CMD.exe";
+            if (gameName == "No More Room In Hell")
+                modelviewer.StartInfo.Arguments = "/c cd /d " + directory + "\\sdk\\bin && start \"\" hlmv.exe -game \"" + directory + "\\" + sourcename + "\"";
+            else if (gameName == "Pirates, Vikings, and Knights II")
+                modelviewer.StartInfo.Arguments = "/c cd /d " + directory + "\\sdkbase_pvkii\\bin && start \"\" hlmv.exe -game \"" + directory + "\\" + sourcename + "\"";
+            else
+                modelviewer.StartInfo.Arguments = "/c cd /d " + directory + "\\bin && start \"\" hlmv.exe -game \""+directory+"\\"+sourcename+"\"";
+            modelviewer.Start();
         }
     }
 }
