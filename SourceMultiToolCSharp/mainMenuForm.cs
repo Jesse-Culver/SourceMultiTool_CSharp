@@ -113,6 +113,13 @@ namespace SourceMultiToolCSharp
             });
             listOfSourceGames.Add(new SourceGame
             {
+                SteamName = "Double Action",
+                ProperName = "Double Action",
+                Installed = false,
+                Directory = ""
+            });
+            listOfSourceGames.Add(new SourceGame
+            {
                 SteamName = "Empires",
                 ProperName = "Empires",
                 Installed = false,
@@ -171,6 +178,13 @@ namespace SourceMultiToolCSharp
             {
                 SteamName = "Nuclear Dawn",
                 ProperName = "Nuclear Dawn",
+                Installed = false,
+                Directory = ""
+            });
+            listOfSourceGames.Add(new SourceGame
+            {
+                SteamName = "pirates, vikings and knights ii",
+                ProperName = "Pirates, Vikings, and Knights II",
                 Installed = false,
                 Directory = ""
             });
@@ -306,6 +320,13 @@ namespace SourceMultiToolCSharp
                             return;
                         }
                         break;
+                    case "Pirates, Vikings, and Knights II":
+                        if (!File.Exists(directory + "\\sdkbase_pvkii\\bin\\hammer.exe"))
+                        {
+                            MessageBox.Show(String.Format("No Hammer install could be found at {0}\\sdkbase_pvkii\\bin\\hammer.exe", directory), "ERROR 002", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                        break;
                     default:
                         MessageBox.Show(String.Format("No Hammer install could be found at {0}\\bin\\hammer.exe", directory), "ERROR 002", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
@@ -316,6 +337,8 @@ namespace SourceMultiToolCSharp
             hammer.StartInfo.FileName = "CMD.exe";
             if (gameName == "No More Room In Hell")
                 hammer.StartInfo.Arguments = "/c cd /d " + directory + "\\sdk\\bin && start \"\" hammer.exe -nop4";
+            else if(gameName == "Pirates, Vikings, and Knights II")
+                hammer.StartInfo.Arguments = "/c cd /d " + directory + "\\sdkbase_pvkii\\bin && start \"\" hammer.exe -nop4";
             else
                 hammer.StartInfo.Arguments = "/c cd /d " + directory + "\\bin && start \"\" hammer.exe -nop4";
             hammer.Start();
