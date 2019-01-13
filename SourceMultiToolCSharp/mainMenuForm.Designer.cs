@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainMenuForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.toolsPage = new System.Windows.Forms.TabPage();
             this.buttonModelViewer = new System.Windows.Forms.Button();
@@ -45,6 +46,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxGames = new System.Windows.Forms.ComboBox();
             this.folderBrowserDialogSteam = new System.Windows.Forms.FolderBrowserDialog();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.toolsPage.SuspendLayout();
             this.settingsPage.SuspendLayout();
@@ -96,6 +99,7 @@
             // 
             // settingsPage
             // 
+            this.settingsPage.Controls.Add(this.label5);
             this.settingsPage.Controls.Add(this.buttonSave);
             this.settingsPage.Controls.Add(this.richTextBoxAdditionalSteamDirectory);
             this.settingsPage.Controls.Add(this.label3);
@@ -166,6 +170,7 @@
             // 
             // tabPageDebug
             // 
+            this.tabPageDebug.Controls.Add(this.label6);
             this.tabPageDebug.Controls.Add(this.richTextBoxSourceGameDebug);
             this.tabPageDebug.Controls.Add(this.label4);
             this.tabPageDebug.Location = new System.Drawing.Point(4, 22);
@@ -216,6 +221,25 @@
             // 
             this.folderBrowserDialogSteam.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 113);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(461, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Before you can use the tool you need to select your main steam directory and save" +
+    " your settings.";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 125);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Version: 2.0.0";
+            // 
             // mainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,6 +248,8 @@
             this.Controls.Add(this.comboBoxGames);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "mainMenuForm";
             this.Text = "Source MultiTool";
             this.Load += new System.EventHandler(this.mainMenuForm_Load);
@@ -257,5 +283,7 @@
         private System.Windows.Forms.TabPage tabPageDebug;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RichTextBox richTextBoxSourceGameDebug;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }
