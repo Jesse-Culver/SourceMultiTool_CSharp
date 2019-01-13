@@ -305,6 +305,7 @@ namespace SourceMultiToolCSharp
             // Clear the combobox and disable buttons
             comboBoxGames.Items.Clear();
             buttonHammer.Enabled = false;
+            buttonModelViewer.Enabled = false;
             foreach (SourceGame game in listOfSourceGames)
             {
                 if (game.Installed)
