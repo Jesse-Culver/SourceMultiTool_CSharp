@@ -48,6 +48,7 @@ namespace SourceMultiToolCSharp
                 Properties.Settings.Default.mainSteamDir = textSteamDirectory.Text;
                 findSteamDirectories();
                 Properties.Settings.Default.Save();
+                System.Windows.Forms.MessageBox.Show("Save Complete!", "Saved", MessageBoxButtons.OK);
             }
             else
             {
