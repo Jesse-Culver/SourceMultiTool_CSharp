@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -138,7 +138,7 @@ namespace SourceMultiToolCSharp
             listOfSourceGames.Add(new SourceGame
             {
                 SteamName = "GarrysMod",
-                ProperName = "Garrys Mod",
+                ProperName = "Garry's Mod",
                 SourceName = "garrysmod",
                 Installed = false,
                 Directory = ""
