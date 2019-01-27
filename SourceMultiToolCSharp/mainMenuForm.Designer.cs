@@ -34,6 +34,8 @@
             this.buttonModelViewer = new System.Windows.Forms.Button();
             this.buttonHammer = new System.Windows.Forms.Button();
             this.settingsPage = new System.Windows.Forms.TabPage();
+            this.button_gmodConfig = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
             this.richTextBoxAdditionalSteamDirectory = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,13 +43,13 @@
             this.textSteamDirectory = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPageDebug = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
             this.richTextBoxSourceGameDebug = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxGames = new System.Windows.Forms.ComboBox();
             this.folderBrowserDialogSteam = new System.Windows.Forms.FolderBrowserDialog();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.toolsPage.SuspendLayout();
             this.settingsPage.SuspendLayout();
@@ -99,6 +101,8 @@
             // 
             // settingsPage
             // 
+            this.settingsPage.Controls.Add(this.label7);
+            this.settingsPage.Controls.Add(this.button_gmodConfig);
             this.settingsPage.Controls.Add(this.label5);
             this.settingsPage.Controls.Add(this.buttonSave);
             this.settingsPage.Controls.Add(this.richTextBoxAdditionalSteamDirectory);
@@ -113,6 +117,27 @@
             this.settingsPage.TabIndex = 1;
             this.settingsPage.Text = "Settings";
             this.settingsPage.UseVisualStyleBackColor = true;
+            // 
+            // button_gmodConfig
+            // 
+            this.button_gmodConfig.Enabled = false;
+            this.button_gmodConfig.Location = new System.Drawing.Point(11, 129);
+            this.button_gmodConfig.Name = "button_gmodConfig";
+            this.button_gmodConfig.Size = new System.Drawing.Size(180, 23);
+            this.button_gmodConfig.TabIndex = 7;
+            this.button_gmodConfig.Text = "Garry\'s Mod Hammer Configuration";
+            this.button_gmodConfig.UseVisualStyleBackColor = true;
+            this.button_gmodConfig.Click += new System.EventHandler(this.button_gmodConfig_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 113);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(461, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Before you can use the tool you need to select your main steam directory and save" +
+    " your settings.";
             // 
             // buttonSave
             // 
@@ -180,6 +205,15 @@
             this.tabPageDebug.Text = "Debug";
             this.tabPageDebug.UseVisualStyleBackColor = true;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 125);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Version: 2.0.0";
+            // 
             // richTextBoxSourceGameDebug
             // 
             this.richTextBoxSourceGameDebug.Location = new System.Drawing.Point(6, 26);
@@ -221,24 +255,15 @@
             // 
             this.folderBrowserDialogSteam.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
-            // label5
+            // label7
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 113);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(461, 13);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Before you can use the tool you need to select your main steam directory and save" +
-    " your settings.";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 125);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(72, 13);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Version: 2.0.0";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(8, 155);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(467, 13);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "WARNING: This does not auto pack content into your map. You still need to do that" +
+    " on your own!";
             // 
             // mainMenuForm
             // 
@@ -285,5 +310,7 @@
         private System.Windows.Forms.RichTextBox richTextBoxSourceGameDebug;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button_gmodConfig;
+        private System.Windows.Forms.Label label7;
     }
 }

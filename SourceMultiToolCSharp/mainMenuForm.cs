@@ -1,4 +1,4 @@
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +20,7 @@ namespace SourceMultiToolCSharp
             InitializeComponent();
         }
 
-        private class SourceGame
+        public class SourceGame
         {
             public string SteamName { get; set; }
             public string ProperName { get; set; }
@@ -30,7 +30,7 @@ namespace SourceMultiToolCSharp
         }
 
         private List<string> steamDirectories = new List<string>();
-        List<SourceGame> listOfSourceGames = new List<SourceGame>();
+        public static List<SourceGame> listOfSourceGames = new List<SourceGame>();
 
         private void buttonBrowseSteamDir_Click(object sender, EventArgs e)
         {
@@ -307,6 +307,7 @@ namespace SourceMultiToolCSharp
             comboBoxGames.Items.Clear();
             buttonHammer.Enabled = false;
             buttonModelViewer.Enabled = false;
+            button_gmodConfig.Enabled = false;
             foreach (SourceGame game in listOfSourceGames)
             {
                 if (game.Installed)
@@ -320,6 +321,10 @@ namespace SourceMultiToolCSharp
                 // Reenable
                 buttonHammer.Enabled = true;
                 buttonModelViewer.Enabled = true;
+            }
+            if(comboBoxGames.Items.Contains("Garry's Mod"))
+            {
+                button_gmodConfig.Enabled = true;
             }
         }
 
@@ -416,6 +421,12 @@ namespace SourceMultiToolCSharp
             else
                 modelviewer.StartInfo.Arguments = "/c cd /d " + directory + "\\bin && start \"\" hlmv.exe -game \""+directory+"\\"+sourcename+"\"";
             modelviewer.Start();
+        }
+
+        private void button_gmodConfig_Click(object sender, EventArgs e)
+        {
+            GarrysModConfigForm gmodConfigForm = new GarrysModConfigForm();
+            gmodConfigForm.ShowDialog();
         }
     }
 }

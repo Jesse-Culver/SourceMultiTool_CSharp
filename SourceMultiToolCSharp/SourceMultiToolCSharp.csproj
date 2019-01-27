@@ -63,6 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GarrysModConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GarrysModConfigForm.Designer.cs">
+      <DependentUpon>GarrysModConfigForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="mainMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +77,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GarrysModConfigForm.resx">
+      <DependentUpon>GarrysModConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="mainMenuForm.resx">
       <DependentUpon>mainMenuForm.cs</DependentUpon>
     </EmbeddedResource>
