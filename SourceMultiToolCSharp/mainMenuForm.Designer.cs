@@ -1,6 +1,6 @@
 ﻿namespace SourceMultiToolCSharp
 {
-    partial class mainMenuForm
+    partial class MainMenuForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainMenuForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenuForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.toolsPage = new System.Windows.Forms.TabPage();
-            this.buttonModelViewer = new System.Windows.Forms.Button();
-            this.buttonHammer = new System.Windows.Forms.Button();
+            this.modelViewer_btn = new System.Windows.Forms.Button();
+            this.hammer_btn = new System.Windows.Forms.Button();
             this.settingsPage = new System.Windows.Forms.TabPage();
+            this.resetSettings_btn = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.button_gmodConfig = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
@@ -43,13 +45,12 @@
             this.textSteamDirectory = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPageDebug = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
+            this.versionLabel = new System.Windows.Forms.Label();
             this.richTextBoxSourceGameDebug = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxGames = new System.Windows.Forms.ComboBox();
             this.folderBrowserDialogSteam = new System.Windows.Forms.FolderBrowserDialog();
-            this.label7 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.toolsPage.SuspendLayout();
             this.settingsPage.SuspendLayout();
@@ -69,8 +70,8 @@
             // 
             // toolsPage
             // 
-            this.toolsPage.Controls.Add(this.buttonModelViewer);
-            this.toolsPage.Controls.Add(this.buttonHammer);
+            this.toolsPage.Controls.Add(this.modelViewer_btn);
+            this.toolsPage.Controls.Add(this.hammer_btn);
             this.toolsPage.Location = new System.Drawing.Point(4, 22);
             this.toolsPage.Name = "toolsPage";
             this.toolsPage.Padding = new System.Windows.Forms.Padding(3);
@@ -79,28 +80,31 @@
             this.toolsPage.Text = "Tools";
             this.toolsPage.UseVisualStyleBackColor = true;
             // 
-            // buttonModelViewer
+            // modelViewer_btn
             // 
-            this.buttonModelViewer.Location = new System.Drawing.Point(6, 35);
-            this.buttonModelViewer.Name = "buttonModelViewer";
-            this.buttonModelViewer.Size = new System.Drawing.Size(117, 23);
-            this.buttonModelViewer.TabIndex = 1;
-            this.buttonModelViewer.Text = "Model Viewer";
-            this.buttonModelViewer.UseVisualStyleBackColor = true;
-            this.buttonModelViewer.Click += new System.EventHandler(this.buttonModelViewer_Click);
+            this.modelViewer_btn.Enabled = false;
+            this.modelViewer_btn.Location = new System.Drawing.Point(6, 35);
+            this.modelViewer_btn.Name = "modelViewer_btn";
+            this.modelViewer_btn.Size = new System.Drawing.Size(117, 23);
+            this.modelViewer_btn.TabIndex = 1;
+            this.modelViewer_btn.Text = "Model Viewer";
+            this.modelViewer_btn.UseVisualStyleBackColor = true;
+            this.modelViewer_btn.Click += new System.EventHandler(this.ButtonModelViewer_Click);
             // 
-            // buttonHammer
+            // hammer_btn
             // 
-            this.buttonHammer.Location = new System.Drawing.Point(6, 6);
-            this.buttonHammer.Name = "buttonHammer";
-            this.buttonHammer.Size = new System.Drawing.Size(117, 23);
-            this.buttonHammer.TabIndex = 0;
-            this.buttonHammer.Text = "Hammer Editor";
-            this.buttonHammer.UseVisualStyleBackColor = true;
-            this.buttonHammer.Click += new System.EventHandler(this.buttonHammer_Click);
+            this.hammer_btn.Enabled = false;
+            this.hammer_btn.Location = new System.Drawing.Point(6, 6);
+            this.hammer_btn.Name = "hammer_btn";
+            this.hammer_btn.Size = new System.Drawing.Size(117, 23);
+            this.hammer_btn.TabIndex = 0;
+            this.hammer_btn.Text = "Hammer Editor";
+            this.hammer_btn.UseVisualStyleBackColor = true;
+            this.hammer_btn.Click += new System.EventHandler(this.buttonHammer_Click);
             // 
             // settingsPage
             // 
+            this.settingsPage.Controls.Add(this.resetSettings_btn);
             this.settingsPage.Controls.Add(this.label7);
             this.settingsPage.Controls.Add(this.button_gmodConfig);
             this.settingsPage.Controls.Add(this.label5);
@@ -117,6 +121,26 @@
             this.settingsPage.TabIndex = 1;
             this.settingsPage.Text = "Settings";
             this.settingsPage.UseVisualStyleBackColor = true;
+            // 
+            // resetSettings_btn
+            // 
+            this.resetSettings_btn.Location = new System.Drawing.Point(418, 381);
+            this.resetSettings_btn.Name = "resetSettings_btn";
+            this.resetSettings_btn.Size = new System.Drawing.Size(75, 23);
+            this.resetSettings_btn.TabIndex = 9;
+            this.resetSettings_btn.Text = "Reset";
+            this.resetSettings_btn.UseVisualStyleBackColor = true;
+            this.resetSettings_btn.Click += new System.EventHandler(this.resetSettings_btn_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(8, 155);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(467, 13);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "WARNING: This does not auto pack content into your map. You still need to do that" +
+    " on your own!";
             // 
             // button_gmodConfig
             // 
@@ -141,13 +165,13 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(418, 381);
+            this.buttonSave.Location = new System.Drawing.Point(6, 381);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 5;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // richTextBoxAdditionalSteamDirectory
             // 
@@ -175,7 +199,7 @@
             this.buttonBrowseSteamDir.TabIndex = 2;
             this.buttonBrowseSteamDir.Text = "Browse";
             this.buttonBrowseSteamDir.UseVisualStyleBackColor = true;
-            this.buttonBrowseSteamDir.Click += new System.EventHandler(this.buttonBrowseSteamDir_Click);
+            this.buttonBrowseSteamDir.Click += new System.EventHandler(this.ButtonBrowseSteamDir_Click);
             // 
             // textSteamDirectory
             // 
@@ -195,7 +219,7 @@
             // 
             // tabPageDebug
             // 
-            this.tabPageDebug.Controls.Add(this.label6);
+            this.tabPageDebug.Controls.Add(this.versionLabel);
             this.tabPageDebug.Controls.Add(this.richTextBoxSourceGameDebug);
             this.tabPageDebug.Controls.Add(this.label4);
             this.tabPageDebug.Location = new System.Drawing.Point(4, 22);
@@ -205,14 +229,14 @@
             this.tabPageDebug.Text = "Debug";
             this.tabPageDebug.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // versionLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 125);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(72, 13);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Version: 2.0.0";
+            this.versionLabel.AutoSize = true;
+            this.versionLabel.Location = new System.Drawing.Point(3, 125);
+            this.versionLabel.Name = "versionLabel";
+            this.versionLabel.Size = new System.Drawing.Size(45, 13);
+            this.versionLabel.TabIndex = 2;
+            this.versionLabel.Text = "Version:";
             // 
             // richTextBoxSourceGameDebug
             // 
@@ -255,17 +279,7 @@
             // 
             this.folderBrowserDialogSteam.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 155);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(467, 13);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "WARNING: This does not auto pack content into your map. You still need to do that" +
-    " on your own!";
-            // 
-            // mainMenuForm
+            // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -275,9 +289,9 @@
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "mainMenuForm";
+            this.Name = "MainMenuForm";
             this.Text = "Source MultiTool";
-            this.Load += new System.EventHandler(this.mainMenuForm_Load);
+            this.Load += new System.EventHandler(this.MainMenuForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.toolsPage.ResumeLayout(false);
             this.settingsPage.ResumeLayout(false);
@@ -294,8 +308,8 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage toolsPage;
         private System.Windows.Forms.TabPage settingsPage;
-        private System.Windows.Forms.Button buttonModelViewer;
-        private System.Windows.Forms.Button buttonHammer;
+        private System.Windows.Forms.Button modelViewer_btn;
+        private System.Windows.Forms.Button hammer_btn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxGames;
         private System.Windows.Forms.RichTextBox richTextBoxAdditionalSteamDirectory;
@@ -309,8 +323,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RichTextBox richTextBoxSourceGameDebug;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label versionLabel;
         private System.Windows.Forms.Button button_gmodConfig;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button resetSettings_btn;
     }
 }

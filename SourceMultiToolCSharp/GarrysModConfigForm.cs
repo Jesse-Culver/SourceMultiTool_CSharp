@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SourceMultiToolCSharp
@@ -23,7 +17,7 @@ namespace SourceMultiToolCSharp
         private void GarrysModConfigForm_Shown(object sender, EventArgs e)
         {
             // Populate our menu with the games they have
-            foreach (mainMenuForm.SourceGame game in mainMenuForm.listOfSourceGames)
+            foreach (SourceGame game in MainMenuForm.listOfSourceGames)
             {
                 if (game.Installed)
                 {
@@ -70,7 +64,7 @@ namespace SourceMultiToolCSharp
                 foreach (string content in listbox_gmodContent.CheckedItems)
                 {
                     // TODO: This could be better optimized
-                    foreach (mainMenuForm.SourceGame game in mainMenuForm.listOfSourceGames)
+                    foreach (SourceGame game in MainMenuForm.listOfSourceGames)
                     {
                         if(game.ProperName == content)
                         {

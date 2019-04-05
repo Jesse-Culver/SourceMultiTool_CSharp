@@ -16,7 +16,7 @@ namespace SourceMultiToolCSharp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new mainMenuForm());
+            Application.Run(new MainMenuForm());
         }
     }
 }

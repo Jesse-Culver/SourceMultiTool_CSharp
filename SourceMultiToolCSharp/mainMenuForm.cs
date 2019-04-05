@@ -1,38 +1,28 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System.Deployment.Application;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace SourceMultiToolCSharp
 {
-    public partial class mainMenuForm : Form
+    public partial class MainMenuForm : Form
     {
-        public mainMenuForm()
+        public MainMenuForm()
         {
             InitializeComponent();
         }
 
-        public class SourceGame
-        {
-            public string SteamName { get; set; }
-            public string ProperName { get; set; }
-            public string SourceName { get; set; }
-            public bool Installed { get; set; }
-            public string Directory { get; set; }
-        }
-
-        private List<string> steamDirectories = new List<string>();
+        public static Steam steam = new Steam();
         public static List<SourceGame> listOfSourceGames = new List<SourceGame>();
+        public static string version = "3.0.0";
 
-        private void buttonBrowseSteamDir_Click(object sender, EventArgs e)
+        private void ButtonBrowseSteamDir_Click(object sender, EventArgs e)
         {
             DialogResult result = folderBrowserDialogSteam.ShowDialog();
             if (result == DialogResult.OK)
@@ -41,14 +31,15 @@ namespace SourceMultiToolCSharp
             }
         }
 
-        private void buttonSave_Click(object sender, EventArgs e)
+        private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (File.Exists(textSteamDirectory.Text + "/Steam.exe"))
             {
                 Properties.Settings.Default.mainSteamDir = textSteamDirectory.Text;
-                findSteamDirectories();
                 Properties.Settings.Default.Save();
+                steam.MainSteamDir = Properties.Settings.Default.mainSteamDir;
                 System.Windows.Forms.MessageBox.Show("Save Complete!", "Saved", MessageBoxButtons.OK);
+                FindSteamDirectories();
             }
             else
             {
@@ -56,13 +47,9 @@ namespace SourceMultiToolCSharp
             }
         }
 
-        private void mainMenuForm_Load(object sender, EventArgs e)
+        private void MainMenuForm_Load(object sender, EventArgs e)
         {
-            // Load in saved properties if still valid
-            if (File.Exists(Properties.Settings.Default.mainSteamDir + "/steamapps/libraryfolders.vdf"))
-            {
-                textSteamDirectory.Text = Properties.Settings.Default.mainSteamDir;
-            }
+            versionLabel.Text += version;
             // Add Source Games
             listOfSourceGames.Add(new SourceGame
             {
@@ -232,19 +219,24 @@ namespace SourceMultiToolCSharp
                 Installed = false,
                 Directory = ""
             });
-            findSteamDirectories();
+            // Load in saved properties if still valid
+            if (File.Exists(Properties.Settings.Default.mainSteamDir + "/Steam.exe"))
+            {
+                steam.MainSteamDir = Properties.Settings.Default.mainSteamDir;
+                textSteamDirectory.Text = Properties.Settings.Default.mainSteamDir;
+                FindSteamDirectories();
+            }
         }
 
-        private void findSteamDirectories()
+        private void FindSteamDirectories()
         {
-            if (File.Exists(textSteamDirectory.Text + "/steamapps/libraryfolders.vdf"))
+            if (File.Exists(steam.MainSteamDir + "/steamapps/libraryfolders.vdf"))
             {
-                string[] lines = File.ReadAllLines(textSteamDirectory.Text + "/steamapps/libraryfolders.vdf");
+                string[] lines = File.ReadAllLines(steam.MainSteamDir + "/steamapps/libraryfolders.vdf");
                 if (lines.Count() != 5)
                 {
                     //This means we have multiple directories
-                    steamDirectories.Clear();
-                    steamDirectories.Add(textSteamDirectory.Text);
+                    steam.AdditionalSteamDirectories.Clear();
                     int numberOfDirectories = lines.Count() - 5;
                     for (int i = 4; i < lines.Count() - 1; i++)    //start at line 5 and go to closing bracket
                     {
@@ -252,9 +244,9 @@ namespace SourceMultiToolCSharp
                         int finalPosition = temp.LastIndexOf("\"");
                         int startPosition = temp.LastIndexOf("\"", finalPosition - 1) + 1;    //Dont grab the same position or starting quote
                         temp = temp.Substring(startPosition, (finalPosition - startPosition)).Replace("\\\\", "\\");
-                        steamDirectories.Add(temp);
+                        steam.AdditionalSteamDirectories.Add(temp);
                     }
-                    richTextBoxAdditionalSteamDirectory.Lines = steamDirectories.ToArray();
+                    richTextBoxAdditionalSteamDirectory.Lines = steam.AdditionalSteamDirectories.ToArray();
                 }
             }
             checkGamesInstalled();
@@ -262,8 +254,16 @@ namespace SourceMultiToolCSharp
 
         private void checkGamesInstalled()
         {
-            // Cycle through all directories and store games we have and their locations
-            foreach (string dir in steamDirectories)
+            foreach (SourceGame game in listOfSourceGames)
+            {
+                if (Directory.Exists(steam.MainSteamDir + "\\steamapps\\common\\" + game.SteamName))
+                {
+                    game.Directory = steam.MainSteamDir + "\\steamapps\\common\\" + game.SteamName;
+                    game.Installed = true;
+                }
+            }
+            // Cycle through all additional directories
+            foreach (string dir in steam.AdditionalSteamDirectories)
             {
                 foreach (SourceGame game in listOfSourceGames)
                 {
@@ -275,10 +275,10 @@ namespace SourceMultiToolCSharp
                 }
             }
             updateGameDropDown();
-            updateDebugInfo();
+            UpdateDebugInfo();
         }
 
-        private void updateDebugInfo()
+        private void UpdateDebugInfo()
         {
             StringBuilder sb = new StringBuilder();
             foreach (SourceGame game in listOfSourceGames)
@@ -305,8 +305,8 @@ namespace SourceMultiToolCSharp
         {
             // Clear the combobox and disable buttons
             comboBoxGames.Items.Clear();
-            buttonHammer.Enabled = false;
-            buttonModelViewer.Enabled = false;
+            hammer_btn.Enabled = false;
+            modelViewer_btn.Enabled = false;
             button_gmodConfig.Enabled = false;
             foreach (SourceGame game in listOfSourceGames)
             {
@@ -319,8 +319,8 @@ namespace SourceMultiToolCSharp
             {
                 comboBoxGames.SelectedIndex = 0;
                 // Reenable
-                buttonHammer.Enabled = true;
-                buttonModelViewer.Enabled = true;
+                hammer_btn.Enabled = true;
+                modelViewer_btn.Enabled = true;
             }
             if(comboBoxGames.Items.Contains("Garry's Mod"))
             {
@@ -375,7 +375,7 @@ namespace SourceMultiToolCSharp
             hammer.Start();
         }
 
-        private void buttonModelViewer_Click(object sender, EventArgs e)
+        private void ButtonModelViewer_Click(object sender, EventArgs e)
         {
             string gameName = comboBoxGames.GetItemText(comboBoxGames.SelectedItem);
             string directory = listOfSourceGames.First(item => item.ProperName == gameName).Directory;
@@ -427,6 +427,27 @@ namespace SourceMultiToolCSharp
         {
             GarrysModConfigForm gmodConfigForm = new GarrysModConfigForm();
             gmodConfigForm.ShowDialog();
+        }
+
+        private void resetSettings_btn_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to reset settings back to default?", "WARNING", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Properties.Settings.Default.Reset();
+                hammer_btn.Enabled = false;
+                modelViewer_btn.Enabled = false;
+                textSteamDirectory.Clear();
+                richTextBoxAdditionalSteamDirectory.Clear();
+                richTextBoxSourceGameDebug.Clear();
+                button_gmodConfig.Enabled = false;
+                foreach (SourceGame game in listOfSourceGames)
+                {
+                    game.Directory = "";
+                    game.Installed = false;
+                }
+                comboBoxGames.Items.Clear();
+            }
         }
     }
 }
